@@ -1,5 +1,5 @@
-# supermark
-Sistema de gestio
+#Supermark
+Sistema de gestión
 
 
 </p>
