@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import ttk
-from menu_admi import *
+from tkinter.messagebox import * 
+import sqlite3 as sql
+
+
 
 class Ventana(Frame): #--> Frame:contenedor de los demás widgets
     def __init__(self,master=None): # __init__ --> el contructor recibe ancho y alto de la ventana
@@ -9,6 +12,7 @@ class Ventana(Frame): #--> Frame:contenedor de los demás widgets
         self.pack() #-->pack() permite mostrar los widgets 
         self.create_widgets()
         self.mostrar()
+
 
     #Funciones utilizando base de datos:
     def agregar(self):
@@ -88,9 +92,9 @@ class Ventana(Frame): #--> Frame:contenedor de los demás widgets
      
     def create_widgets(self): 
         #Elementos del Frame1
-        frame1 = Frame (self, bg="turquoise")
+        frame1 = Frame (self, bg="#F1F8E9")
         frame1.place(x=0,y=0,width=93,height=369)
-        
+
         self.boton1=Button(frame1,text="Agregar", comman=self.agregar,bg="tan1",fg="black",cursor="hand2")
         self.boton1.place(x=5,y=50,width=80,height=30)  
 
@@ -104,54 +108,56 @@ class Ventana(Frame): #--> Frame:contenedor de los demás widgets
         self.botonLimpiar.place(x=5,y=189,width=80,height=30)
 
         #Elementos del Frame2
-        frame2 = Frame (self, bg="turquoise")
+        frame2 = Frame (self, bg="#F1F8E9")
         frame2.place(x=95,y=0,width=150,height=369)
 
-        lb1= Label(frame2,text="id: ",bg="turquoise") #label --> no lleva "self" por que no se va a modificar
+        lb1= Label(frame2,text="Id: ",bg="#F1F8E9") #label --> no lleva "self" por que no se va a modificar
         lb1.place(x=3,y=5)
         self.id=Entry(frame2) 
         self.id.place(x=3,y=23,width=100,height=20)
 
-        lb2= Label(frame2,text="marca: ",bg="turquoise")  
+        lb2= Label(frame2,text="Marca: ",bg="#F1F8E9")  
         lb2.place(x=3,y=55)
         self.marca=Entry(frame2)
         self.marca.place(x=3,y=75,width=100,height=20)
 
-        lb3= Label(frame2,text="categoria: ",bg="turquoise")  
+        lb3= Label(frame2,text="Categoria: ",bg="#F1F8E9")  
         lb3.place(x=3,y=100)
         self.categoria=Entry(frame2)
         self.categoria.place(x=3,y=130,width=100,height=20)
 
-        lb4=Label(frame2,text="nombre:",bg="turquoise")
+        lb4=Label(frame2,text="Nombre:",bg="#F1F8E9")
         lb4.place(x=3,y=158)
         self.nombre=Entry(frame2)
         self.nombre.place(x=3,y=180,width=100,height=20)
 
-        lb5=Label(frame2,text="cantidad: ",bg="turquoise")
+        lb5=Label(frame2,text="Stock: ",bg="#F1F8E9")
         lb5.place(x=3,y=203)
         self.stock=Entry(frame2)
         self.stock.place(x=3,y=235,width=100,height=20)
 
-        lb6=Label(frame2,text="precio: ",bg="turquoise")
+        lb6=Label(frame2,text="Precio: ",bg="#F1F8E9")
         lb6.place(x=3,y=263)
         self.precio=Entry(frame2)
         self.precio.place(x=3,y=285,width=100,height=20)
 
-        self.botonActualizar=Button(frame2,text="Actualizar",command=self.actualizar,bg="green",fg="black",cursor="hand2")
+        self.botonActualizar=Button(frame2,text="Actualizar",command=self.actualizar,bg="#A6E441",fg="black",cursor="hand2")
         self.botonActualizar.place(x=10,y=314,width=60,height=30)
 
 
         #Elemtentos del Frame3 --> donde se puede visualizar la tabla 
          
-        frame3=Frame(self,bg="gold")
+        frame3=Frame(self,bg="#FAFAFA")
         frame3.place(x=247,y=0,width=530,height=369)
-
+        
         """ 
         El widget ttk.Treeview muestra la informacion en tabla, dicha info se muestran en columnas
         se puede acceder a las columnas por número o nombres simbólicos enumerados 
         en las columnas de opciones del widget. 
         """        
+ 
         self.grid = ttk.Treeview(frame3,columns=("col1","col2","col3","col4","col5",))
+      
 
         #Ancho de las columnas y ‘CENTER’, muestra el elemento centrado.
         self.grid.column("#0",width=50)

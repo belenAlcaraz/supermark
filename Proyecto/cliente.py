@@ -1,6 +1,7 @@
 from usuario import Usuario
 from tkinter import *
 from tkinter.messagebox import *
+from market import * 
 import sqlite3
 
 
@@ -12,6 +13,8 @@ class Cliente(Usuario):
      Además,o solo puede referirse a la __init__()función, 
      sino que también puede llamar a todas las demás funciones de la superclase.(usuario,no tiene funciones) 
      """
+    def agregar_producto_al_carrito(self):#?
+        pass
 
 #Ventana principal
 def ventana_inicio():
@@ -81,7 +84,7 @@ def registro():
     ventana_registro = Tk()
     ventana_registro.title("Registro")
     ventana_registro.geometry("400x500")
-    ventana_registro['bg']='turquoise'
+    ventana_registro['bg']='#FFF8DC'
 
     Label(ventana_registro, text="Para un registro exitoso,complete los siguientes datos: ",font=("Calibri", 11),bg="turquoise").pack()
     Label(ventana_registro, text="",bg="turquoise").pack()
@@ -155,6 +158,8 @@ def login():
         
         if cursor.fetchall():
             showinfo(title='Login exitoso',message='Sesion iniciada correctamente')
+            ventana_inicio.destroy()
+            kiwi()
         else:
             showerror(title='ups, algo ha salido mal', message='usuario o contraseña incorrectos')
         con.close()
